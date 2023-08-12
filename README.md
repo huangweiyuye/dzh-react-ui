@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+# @dzh-ui/react-ui
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React UI 组件库具体实现的博客地址 [react-ui-library](https://huangjiangjun.top/blog/web-advanced/react-ui-component-library/start)
 
-## Available Scripts
+[前端进阶博客](https://huangjiangjun.top/blog/web-advanced)，感谢关注
 
-In the project directory, you can run:
+## 使用步骤
 
-### `npm start`
+### 安装依赖包
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```bash
+npm i @dzh-ui/react-ui
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 使用示例
 
-### `npm test`
+`App.js`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```js
+import {
+  Button,
+  Icon,
+  Menu,
+  AutoComplete,
+  Upload,
+  Progress
+} from '@dzh-ui/react-ui'
 
-### `npm run build`
+function App() {
+  const handleFetch = query => {
+    return fetch(`https://api.github.com/search/users?q=${query}`)
+      .then(data => data.json())
+      .then(({ items }) => {
+        return items.slice(0, 10).map(item => ({
+          value: item.login,
+          ...item
+        }))
+      })
+  }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  return (
+    <div className='App'>
+      <header className='App-header'>
+        <Button btnType='primary' size='lg'>
+          我是按钮呀
+        </Button>
+        &nbsp;
+        <Icon icon='coffee' size='5x' theme='primary' />
+        <hr />
+        <Menu>
+          <Menu.Item>cool link</Menu.Item>
+          <Menu.Item disabled>disabled</Menu.Item>
+          <Menu.Item>cool link2</Menu.Item>
+          <Menu.SubMenu title='Submenu'>
+            <Menu.Item>sub link1</Menu.Item>
+            <Menu.Item>sub link2</Menu.Item>
+          </Menu.SubMenu>
+        </Menu>
+        <br />
+        <AutoComplete fetchSuggestions={handleFetch} />
+        <Upload action='https://huangjiangjun.top:3002/admin/file/upload'>
+          <Button size='lg'>Upload</Button>
+        </Upload>
+        <Progress percent={90} />
+      </header>
+    </div>
+  )
+}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+export default App
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 打赏我
 
-### `npm run eject`
+如果你觉得不错，可以请我喝杯茶，金额随意，谢谢
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![微信支付](https://manageritcast.gitee.io/blog/assets/img/wxpay.png){ width="350px" height="350px"}
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![支付宝支付](https://manageritcast.gitee.io/blog/assets/img/alipay.png){ width="350px" height="350px"}
