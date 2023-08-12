@@ -1,0 +1,20 @@
+// config，以_开头的scss文件，不能单独编译，只能在别的文件中导入，导入的时候，不需要加_
+@import 'variables';
+
+//layout
+@import 'reboot';
+
+// mixin
+@import 'mixin';
+
+// animation
+@import 'animation';
+
+// 导入组件的样式
+@import '../components/Button/style';
+@import '../components/Menu/style';
+@import '../components/Icon/style';
+@import '../components/Input/style';
+@import '../components/AutoComplete/style';
+@import '../components/Upload/style';
+@import '../components/Progress/style';
